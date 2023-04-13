@@ -185,6 +185,32 @@
     19.4- put in useGames.ts
     19.5- in GameGrid.tsx add 
             const {games, error} = useGames();
-    19.6-
+
+20- Build game cards
+    20.1- in components create file GameCard.tsx
+    20.2- create a Props interface
+    20.3- interface Props {
+            game: Game;
+          }
+    20.4- return <Card>
+                    <Image src={game.background_image}/>
+                    <CardBody>
+                        <Heading>{game.name}</Heading>
+                    </CardBody>
+                 </Card>
+    20.5- on GameGrid.tsx replace the ul for SimpleGrid
+    20.6- add the column and spacing size
+    20.7- <SimpleGrid 
+            columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} 
+            spacing={10}>
+            {games.map((game) => (
+                <GameCard key={game.id} game={game} />
+            ))}
+          </SimpleGrid>
+    20.8- on GameCard.tsx add to Card 2 properties
+    20.9- <Card borderRadius={10} overflow='hidden'>
+    20.10- fix heading size with predefined size on chakra
+    20.11- <Heading fontSize='1xl'>
+
 
     

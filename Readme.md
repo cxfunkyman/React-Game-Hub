@@ -68,3 +68,5 @@
     11.4 - <GridItem area='nav' bg='coral'>Nav</GridItem>
            <GridItem area='aside'bg='gold'>Aside</GridItem>
            <GridItem area='main' bg='dodgerblue'>Main</GridItem>
+
+12- build a navigation bar

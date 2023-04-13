@@ -58,4 +58,13 @@
 
 9- commit your changes to git
 
-10-
+10- if you want to see you git log
+    10.1- git log --oneline
+
+11- create a responsive layout
+    11.1- use Grid from chakra ui
+    11.2- <Grid templateAreas={`"nav nav" "aside main"`}></Grid>
+    11.3- next inside Grid lets add GridItem
+    11.4 - <GridItem area='nav' bg='coral'>Nav</GridItem>
+           <GridItem area='aside'bg='gold'>Aside</GridItem>
+           <GridItem area='main' bg='dodgerblue'>Main</GridItem>

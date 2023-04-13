@@ -69,4 +69,31 @@
            <GridItem area='aside'bg='gold'>Aside</GridItem>
            <GridItem area='main' bg='dodgerblue'>Main</GridItem>
 
-12- build a navigation bar
+12- Build a navigation bar
+    12.1- create folder components in scr folder
+    12.2- inside create NavBar.tsx
+    12.3- create an horizontal stack <HStack></HStack>  
+    13.4- <HStack>
+            <Image src={logo} boxSize='60px' />
+            <Text>NavBar</Text>
+          </HStack>  
+
+13- Any image like logo goes inside assets folder
+    13.1- import images like any other component
+    13.2- import logo from '../assets/Logo/logo.webp';
+
+14- Implementing dark mode (chakra ui: color mode)
+    14.1- in scr folder create file theme.ts
+    14.2- import { extendTheme, ThemeConfig } from "@chakra-ui/react";
+    14.3- const config: ThemeConfig = {
+          initialColorMode: 'dark'
+          };
+    14.4- export default this extendTheme({config}) with a   constant
+    14.5- add to main this on chakra provider and the color scriptmode
+    15.6- <ChakraProvider theme={theme}>
+            <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+            <App />
+          </ChakraProvider>
+    15.7- before refresh go to inspect->application->local and delete chakra-ui-color-mode which is set to light
+    15.8- now refresh
+    

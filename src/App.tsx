@@ -6,10 +6,16 @@ import NavBar from './components/NavBar'
 import GameGrid from './components/GameGrid'
 
 function App() {
-  return <Grid templateAreas={{
+  return <Grid 
+  templateAreas={{
     base: `"nav" "main"`, //mobile devices
-    lg: `"nav nav" "aside main"` // for devices more than 1024px
-  }}>
+    lg: `"nav nav" "aside main"`, // for devices more than 1024px
+  }}
+  templateColumns={{
+    base: '1fr',
+    lg: '250px 1fr'
+  }}
+  >
     <GridItem area='nav'>
       <NavBar />
     </GridItem>

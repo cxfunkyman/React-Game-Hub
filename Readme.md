@@ -125,8 +125,8 @@
     17.4- create file api-client.ts
     17.5- import axios from "axios";
     17.6- axios.create({
-            params: {
-                baseURL: 'Your URL goes here'
+            baseURL: 'Your URL goes here',
+            params: {                
                 key: 'Your api key goes here'
             }
            })
@@ -160,12 +160,31 @@
             apiClient.get<FetchGamesResponse>('games')
             .then(res => setGames(res.data.results))
             .catch(err => setError(err.message));
-           })
+           }, [])
     18.16- inside the return
-           <ul>
+           <>
+              {error && <Text>{error}</Text>}
+              <ul>
                 {games.map(game => <li key={game.id}>{game.name}</li>)}
-            </ul>
+              </ul>
+            </>
     18.17- in App.tsx on main GridItem add <GameGrid />
-    18.18- 
+
+19- Create a custom hook for fetching
+    19.1- inside scr create folder hooks
+    19.2- inside hooks create file useGames.ts
+    19.3- cut intefaces and useState, useEffect from GameGrid.tsx
+        const [games, setGames] = useState<Game[]> ([]);
+        const [error, setError] = useState('');
+        useEffect(() => {
+            apiClient
+            .get<FetchGamesResponse>('games')
+            .then(res => setGames(res.data.results))
+            .catch(err => setError(err.message));
+        }, []);
+    19.4- put in useGames.ts
+    19.5- in GameGrid.tsx add 
+            const {games, error} = useGames();
+    19.6-
 
     

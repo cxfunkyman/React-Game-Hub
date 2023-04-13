@@ -89,11 +89,35 @@
           initialColorMode: 'dark'
           };
     14.4- export default this extendTheme({config}) with a   constant
-    14.5- add to main this on chakra provider and the color scriptmode
+    14.5- add to main.tsx this on chakra provider and the color scriptmode
     15.6- <ChakraProvider theme={theme}>
             <ColorModeScript initialColorMode={theme.config.initialColorMode} />
             <App />
           </ChakraProvider>
     15.7- before refresh go to inspect->application->local and delete chakra-ui-color-mode which is set to light
     15.8- now refresh
+
+16- Build color mode switch
+    16.1- in components create file ColorModeSwitch.tsx
+    16.2- import { HStack, Switch, Text, useColorMode } from '@chakra-ui/react'
+    16.3- const {toggleColorMode, colorMode} = useColorMode();
+    16.4- <HStack>
+            <Switch 
+                colorScheme='green'
+                isChecked={colorMode === 'dark'} 
+                onChange={toggleColorMode}/>
+            <Text>Dark Mode</Text>
+          </HStack>
+    16.5- now add to navbar.tsx
+    16.6- import ColorModeSwitch from './ColorModeSwitch';
+    16.7- <HStack>
+            <Switch 
+                colorScheme='green'
+                isChecked={colorMode === 'dark'} 
+                onChange={toggleColorMode}/>
+            <Text>Dark Mode</Text>
+          </HStack>
+
+17- Fetching games
+
     

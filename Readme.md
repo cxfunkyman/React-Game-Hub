@@ -118,6 +118,54 @@
             <Text>Dark Mode</Text>
           </HStack>
 
-17- Fetching games
+17- Install axios for HTTP request
+    17.1- npm i axios
+    17.2- let's create a custom service
+    17.3- create folder services in scr folder
+    17.4- create file api-client.ts
+    17.5- import axios from "axios";
+    17.6- axios.create({
+            params: {
+                baseURL: 'Your URL goes here'
+                key: 'Your api key goes here'
+            }
+           })
+
+18- Fetching games form rawg api
+    18.1- go to rawg.io login or sign up
+    18.2- if still free ask for api key
+    18.3- copy the api key and paste it on api-clients.ts
+    18.4- go to rawg.io/apidocs click on read documentation on top of get API Key
+    18.5- click on 'get /games' and copy the link
+    18.6- inside components create file GameGrid.tsx
+    18.7- const [games, setGames] = useState ([]);
+    18.8- const [error, setError] = useState('');
+    18.9- import apiClient from '../services/api-client';
+    18.10- useEffect(() => {
+            apiClient.get('games')
+            .then(res => setGames())
+           })
+    18.11- use typescript to define an interface that represents the shape of the response object
+    18.12- interface Game {
+            id: number;
+            name: string;
+           }
+           interface FetchGamesResponse {
+            count: number;
+            results: Game[];
+           }
+    18.13- const [games, setGames] = useState<Game[]> ([]);
+    18.14- const [error, setError] = useState('');
+    18.15- useEffect(() => {
+            apiClient.get<FetchGamesResponse>('games')
+            .then(res => setGames(res.data.results))
+            .catch(err => setError(err.message));
+           })
+    18.16- inside the return
+           <ul>
+                {games.map(game => <li key={game.id}>{game.name}</li>)}
+            </ul>
+    18.17- in App.tsx on main GridItem add <GameGrid />
+    18.18- 
 
     

@@ -315,7 +315,38 @@
     23.8- on GameCard.tsx in Image src call the getCroppedImageUrl and pass the game.background_image as a parameter
         23.8.1- <Image src={getCroppedImageUrl(game.background_image)}/>
 
-24- 
+24- Improving User Experience with Loading Skeletons
+    24.1- on useGames.ts add 
+        24.1.1- const [isLoading, setIsLoading] = useState(false);
+    24.2- in the useEffect in the response add new statement before the apiClinet setIsLoading to true and in .then and .catch to false
+        24.2.1- setIsLoading(true);
+                apiClient
+        24.2.2- .then(res => {
+                    setGames(res.data.results);
+                    setIsLoading(false);
+                })
+    24.3- the same in the catch
+        24.3.1- .catch(err => {
+                    if (err instanceof CanceledError) return;
+                    setError(err.message);
+                    setIsLoading(false);
+                });
+    24.4- and in the return add isLoading
+        24.4.1- return { games, error, isLoading };
+    24.5- in components folder create file GameCardSkeleton.tsx
+    24.6- in the return statement create a card inside a skeleton with height 200px for test, then create card body inside skeleton text
+        24.6.1- <Card width='300px' borderRadius={15} overflow='hidden'>
+                    <Skeleton height='200px' />
+                    <CardBody>
+                        <SkeletonText />
+                    </CardBody>
+                </Card>
+    24.7- now add to GameGrid.tsx
+        24.7.1- const {games, error, isLoading} = useGames();
+        24.7.2- create an Array
+            24.7.3- const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    24.8- add a new line to render the skeletons when the page is loading
+        24.8.1- {isLoading && skeletons.map(skeleton => <GameCardSkeleton key={skeleton}/>)}
     
 
     

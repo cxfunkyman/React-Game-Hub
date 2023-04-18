@@ -273,12 +273,31 @@
             }
     21.33- remove the text component and  put icon component
     21.34- to render the icon dynamically
-    21.35-  return <HStack>
+    21.35- return <HStack marginTop={'10px'}>
                         {platforms.map((platform) => (
                         <Icon as={iconMap[platform.slug]} color='gray.500'/>
                         ))}
                    </HStack>
-    21.36-
+
+22- Display Critics Scores
+    22.1- in useGames.ts add to game interface
+    22.2- metacritic: number;
+    22.3- on component folder create
+    22.4- CriticScore.tsx
+    22.5- create a new interface props with score: number and add it
+    22.6- const CriticScore = ({ score }: Props)
+    22.7- create badge from chakra and render the score
+    22.8- <Badge>{ score }</Badge>
+    22.9- on GameCard.tsx after PlatformIconList add
+    22.10- <CriticScore score={game.metacritic}/>
+    22.11- inside a horizontal stack HStack wrap PlatformIconList and CriticScore
+    22.12- <HStack justifyContent='space-between'>
+    22.13- add to badge font-size and boreder-radius
+    22.14- fontSize='14px' paddingX={2} borderRadius='5px'
+    22.15- create a constant to change the color of the badge
+    22.16- let color = score >= 90 ? 'green' : score >= 80 ? 'yellow' : score < 80 ? 'red'  : '';
+    22.17 add to badge 
+    22.18- colorScheme={color}
 
 
     

@@ -212,5 +212,73 @@
     20.10- fix heading size with predefined size on chakra
     20.11- <Heading fontSize='1xl'>
 
+21- Displaying icons
+    21.1- add the parent platform property to each interface from the game json list on game interface from useGames.ts
+    21.2- create a new interface
+    21.3- interface Platform {
+            id: number;
+            name: string;
+            slug: string;
+          }
+    21.4- add to game interface
+    21.5- parent_platforms: { platform: Platform }[];
+    21.6- for testing add in text format under heading from GameCards.tsx
+    21.7- {game.parent_platforms.map(({platform}) => <Text>{ platform.name }</Text> )}
+    21.8- is time to render the icons after the test, for that let's use react-icons
+    21.9- npm i react-icons@4.8.0 at the time of this project was created maybe is higher now
+    21.10- to render the icon we need a mapping between the name of the platform and the icon, will be done in a different component
+    21.11- in component folder, add file PlatformIconList.tsx
+    21.12- create interface props
+    21.13- interface Props {
+                platforms: Platform[];
+           }
+    21.14- exported from useGames.ts
+    21.15- export interface Platform
+    21.16- on PlatformIconList.tsx
+    21.17- import { Platform } from '../hooks/useGames';
+    21.18- add the props to PlatformIconList
+    21.19- const PlatformIconList = ({ platforms }: Props) => {
+    21.20- on GameCard.tsx cut the text line added before
+    21.21- {game.parent_platforms.map(({platform}) => <Text>{ platform.name }</Text> )}
+    21.22- paste it on PlatformIconList.tsx as a return statement
+    21.23- as we don't need anymore game.parent_platforms and don't need to destructure {platform}, will be end like this
+    21.24- {platforms.map((platform) => <Text>{ platform.name }</Text> )}
+    21.25- now on GameCard.tsx add after heading
+    21.26- <PlatformIconList platforms={game.parent_platforms.map(p => p.platform)} /> 
+    21.27- just for testing we were using labels now is time to change it for icons
+    21.28- on PlatformIconList.tsx
+    21.29- import the icon library from react-icons/fa
+    21.30- import { 
+                FaWindows, 
+                FaPlaystation, 
+                FaXbox, 
+                FaApple, 
+                FaLinux, 
+                FaAndroid  
+           } from 'react-icons/fa';
+           import { MdPhoneIphone } from 'react-icons/md';
+           import { SiNintendo } from 'react-icons/si';
+           import { BsGlobe } from 'react-icons/bs';
+    21.31- create an icon map with key index signature property
+    21.32 - const iconMap: { [key: string]: IconType } = {
+                pc: FaWindows,
+                playstation: FaPlaystation,
+                xbox: FaXbox,
+                nintendo: SiNintendo,
+                mac: FaApple,
+                linux: FaLinux,
+                android: FaAndroid,
+                ios: MdPhoneIphone,
+                web: BsGlobe
+            }
+    21.33- remove the text component and  put icon component
+    21.34- to render the icon dynamically
+    21.35-  return <HStack>
+                        {platforms.map((platform) => (
+                        <Icon as={iconMap[platform.slug]} color='gray.500'/>
+                        ))}
+                   </HStack>
+    21.36-
+
 
     

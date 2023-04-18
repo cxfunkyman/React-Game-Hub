@@ -299,5 +299,23 @@
     22.17 add to badge 
     22.18- colorScheme={color}
 
+23- Getting optimized images
+    23.1- from this site rawg.io were the api link is taken images are to big to show inside cards, but this api support cropping images on the fly for example one image url is: https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg but if we add to this link crop/600/400 we'll get a small image
+    https://media.rawg.io/media/crop/600/400/games/562/562553814dd54e001a541e4ee83a591c.jpg
+    23.2- create a new service to modify the url
+    23.2- on services folder create file
+    23.3- image-url.ts
+    23.4- create const getCroppedImageUrl
+    23.5- create a target to store 'media/
+    23.6- create index to store
+        23.6.1- url.indexOf(target) + target.length;
+    23.7- return a url.slice
+        23.7.1- slice frm the beginning to index (0, index), then add the crop acepted by the api in this case 'crop/600/400/', then add the rest of the url
+        23.7.2- return url.slice(0, index) + 'crop/600/400' + url.slice(index);
+    23.8- on GameCard.tsx in Image src call the getCroppedImageUrl and pass the game.background_image as a parameter
+        23.8.1- <Image src={getCroppedImageUrl(game.background_image)}/>
+
+24- 
+    
 
     

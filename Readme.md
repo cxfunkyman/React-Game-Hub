@@ -347,6 +347,27 @@
             24.7.3- const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     24.8- add a new line to render the skeletons when the page is loading
         24.8.1- {isLoading && skeletons.map(skeleton => <GameCardSkeleton key={skeleton}/>)}
-    
+
+25- Refactor - Removing Duplicated Styles
+    25.1- on components folder create new file
+        25.1.1- GameCardContainer.tsx
+    25.2- return <Box></Box>
+    25.3- apply style to box
+        25.3.1- <Box width='300px' borderRadius={15}      overflow='hidden'></Box>
+    25.4- create interface props with children reactnode
+        25.4.1- interface Props {
+                    children: ReactNode
+                } 
+    25.5- add to GameCardContainer
+        25.5.1- const GameCardContainer = ({ children }: Props) => {
+    25.6- add to Box children
+        25.6.1- { children }  
+    25.7- add to GameGrid.tsx wrap the gamecardskeleton component and gamecard component
+        25.7.1- <GameCardContainer>
+                    <GameCardSkeleton key={skeleton} />
+                </GameCardContainer>)}
+        25.7.2- <GameCardContainer>
+                    <GameCard key={game.id} game={game} />
+                </GameCardContainer>
 
     

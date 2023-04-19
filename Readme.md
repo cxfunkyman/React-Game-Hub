@@ -370,4 +370,27 @@
                     <GameCard key={game.id} game={game} />
                 </GameCardContainer>
 
+26- Fetching the Genres
+    26.1- on components create GenreList.tsx
+    26.2- on hooks create useGenre.ts
+    26.3- because is the same return as useGame.ts you can either copy and modify or start from zero.
+    26.4- as in usGame.ts create 2 interfaces the same
+        26.4.1- interface Genre {
+                    id: number;
+                    name: string;
+                    slug: string;
+                }
+        26.4.2- interface FetchGenresResponse {
+                    count: number;
+                    results: Genre[];
+                }
+    26.5- on GenreList.tsx add const genre
+        26.5.1- const {genres} = useGenres();
+    26.6- return a ul with the mapping of genres
+        26.6.1- {genres.map(genre => <li key={genre.id}>    {genre.name}</li>)}
+    26.7- add GenreList component to app component to the aside area
+        26.8- <GridItem area='aside'>
+                    <GenreList />
+              </GridItem>
+
     

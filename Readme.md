@@ -6,17 +6,21 @@
     1.4- variant: Typescript
 
 2- Go inside the 'react-game-hub'
+
     2.1- npm i (to install all dependencies)    
 
 3- Run the npm server
+
     3.1- npm run dev
 
 4- Initialize Git repository (optional)
+
     4.1- git init
     4.2- git add .
     4.3- git commit -m "Initial commit"
 
 5- Install chakra from chakra-ui.com
+
     5.1- on framework guide select chakra for vite
     5.2- npm i @chakra-ui/react @emotion/react @emotion/    styled framer-motion
     5.3- add a provider
@@ -30,6 +34,7 @@
             </React.StrictMode>,
 
 6- If you want to customize your theme (optional)
+
     6.1- import { extendTheme } from '@chakra-ui/react'
     6.2- must look like this:
     6.2.1- Extend the theme to include custom colors, fonts, etc
@@ -49,6 +54,7 @@
                 </React.StrictMode>,
 
 7- add components from chakra ui
+
     7.1- can be found in he same chakra vite page
     7.2- for example adding a button
     7.3- import { Button, ButtonGroup } from '@chakra-ui/react'
@@ -60,9 +66,11 @@
 9- commit your changes to git
 
 10- if you want to see you git log
+
     10.1- git log --oneline
 
 11- create a responsive layout
+
     11.1- use Grid from chakra ui
     11.2- <Grid templateAreas={`"nav nav" "aside main"`}></Grid>
     11.3- next inside Grid lets add GridItem
@@ -71,6 +79,7 @@
            <GridItem area='main' bg='dodgerblue'>Main</GridItem>
 
 12- Build a navigation bar
+
     12.1- create folder components in scr folder
     12.2- inside create NavBar.tsx
     12.3- create an horizontal stack <HStack></HStack>  
@@ -80,10 +89,12 @@
           </HStack>  
 
 13- Any image like logo goes inside assets folder
+
     13.1- import images like any other component
     13.2- import logo from '../assets/Logo/logo.webp';
 
 14- Implementing dark mode (chakra ui: color mode)
+
     14.1- in scr folder create file theme.ts
     14.2- import { extendTheme, ThemeConfig } from "@chakra-ui/react";
     14.3- const config: ThemeConfig = {
@@ -99,6 +110,7 @@
     15.8- now refresh
 
 16- Build color mode switch
+
     16.1- in components create file ColorModeSwitch.tsx
     16.2- import { HStack, Switch, Text, useColorMode } from '@chakra-ui/react'
     16.3- const {toggleColorMode, colorMode} = useColorMode();
@@ -120,6 +132,7 @@
           </HStack>
 
 17- Install axios for HTTP request
+
     17.1- npm i axios
     17.2- let's create a custom service
     17.3- create folder services in scr folder
@@ -133,6 +146,7 @@
            })
 
 18- Fetching games form rawg api
+
     18.1- go to rawg.io login or sign up
     18.2- if still free ask for api key
     18.3- copy the api key and paste it on api-clients.ts
@@ -172,6 +186,7 @@
     18.17- in App.tsx on main GridItem add <GameGrid />
 
 19- Create a custom hook for fetching
+
     19.1- inside scr create folder hooks
     19.2- inside hooks create file useGames.ts
     19.3- cut intefaces and useState, useEffect from GameGrid.tsx
@@ -188,6 +203,7 @@
             const {games, error} = useGames();
 
 20- Build game cards
+
     20.1- in components create file GameCard.tsx
     20.2- create a Props interface
     20.3- interface Props {
@@ -214,6 +230,7 @@
     20.11- <Heading fontSize='1xl'>
 
 21- Displaying icons
+
     21.1- add the parent platform property to each interface from the game json list on game interface from useGames.ts
     21.2- create a new interface
     21.3- interface Platform {
@@ -281,6 +298,7 @@
                    </HStack>
 
 22- Display Critics Scores
+
     22.1- in useGames.ts add to game interface
     22.2- metacritic: number;
     22.3- on component folder create
@@ -301,6 +319,7 @@
     22.18- colorScheme={color}
 
 23- Getting optimized images
+
     23.1- from this site rawg.io were the api link is taken images are to big to show inside cards, but this api support cropping images on the fly for example one image url is: https://media.rawg.io/media/games/562/562553814dd54e001a541e4ee83a591c.jpg but if we add to this link crop/600/400 we'll get a small image
     https://media.rawg.io/media/crop/600/400/games/562/562553814dd54e001a541e4ee83a591c.jpg
     23.2- create a new service to modify the url
@@ -317,6 +336,7 @@
         23.8.1- <Image src={getCroppedImageUrl(game.background_image)}/>
 
 24- Improving User Experience with Loading Skeletons
+
     24.1- on useGames.ts add 
         24.1.1- const [isLoading, setIsLoading] = useState(false);
     24.2- in the useEffect in the response add new statement before the apiClinet setIsLoading to true and in .then and .catch to false
@@ -350,6 +370,7 @@
         24.8.1- {isLoading && skeletons.map(skeleton => <GameCardSkeleton key={skeleton}/>)}
 
 25- Refactor - Removing Duplicated Styles
+
     25.1- on components folder create new file
         25.1.1- GameCardContainer.tsx
     25.2- return <Box></Box>
@@ -372,6 +393,7 @@
                 </GameCardContainer>
 
 26- Fetching the Genres
+
     26.1- on components create GenreList.tsx
     26.2- on hooks create useGenre.ts
     26.3- because is the same return as useGame.ts you can either copy and modify or start from zero.
@@ -395,6 +417,7 @@
               </GridItem>
 
 27- Creating a Generic Data Fetching Hook
+
     27.1- in hooks folder create a new file
         27.1.1- useData.ts
     27.2- copy all the code inside useGenres.ts and paste it in the new file
@@ -422,6 +445,7 @@
     27.13- same process for fetching games, and in the GameGrid.tsx fix the error for games change it for data
 
 28- Displaying the Genres
+
     28.1- in useGenre.ts add background_image to interface
         28.1.1- background_image: string;
     28.2- on GenreList.ts change the ul for List and the li for ListItem, both from chakra
@@ -441,6 +465,7 @@
     28.5- remove the fix card width of 300px
 
 29- Showing a Spinner
+
     29.1- on GameList.tsx add const isLoading and error
     29.2- add if statement to check if is loading is true show spinner and if error is tru return null
         29.2.1- const { data, isLoading, error } = useGenres();
@@ -448,6 +473,7 @@
                 if (error) return null;
 
 30- Filtering Games by Genre
+
     30.1- on GenreList.tsx change the Text for a button
     30.2- in App.tsx create a state hook for the genre filtering
         30.2.1- const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
@@ -491,12 +517,14 @@
             30.14.1- <GameGrid selectedGenre={selectedGenre}/>
 
 31- Highlighting the Selected Genre
+
     31.1- on GenreList.tsx add a new props selectedGenre type Genre or null
         31.1.1- selectedGenre: Genre | null;
     31.2- add to GenreList parameters
     31.3- in App.tsx add the parameter to GenreList
 
 32- Building Platform Selector (build a platform dropdown list)
+
     32.1- on components folder add new file PlatformSelector.tsx
     32.2- add from chakra menu and menubutton righticon from bootstrap chevron down, add a menulist and many menuitem just to test our app
         32.2.1- <Menu>
@@ -528,6 +556,7 @@
             32.11.1- {data.map(platform => <MenuItem key={platform.id}>{platform.name}</MenuItem>)}
 
 33- Filtering Games by Platform
+
     33.1- using the same approach as before (filtering by genre)
     33.2- in app component add new useState, the same as genre but for platforms
         33.2.1- const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);

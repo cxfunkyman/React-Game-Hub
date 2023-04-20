@@ -446,4 +446,47 @@
                 if (isLoading) return <Spinner />;
                 if (error) return null;
 
-30- 
+30- Filtering Games by Genre
+    30.1- on GenreList.tsx change the Text for a button
+    30.2- in App.tsx create a state hook for the genre filtering
+        30.2.1- const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+    30.3- on GenreList.tsx add a prop for passing a callback function
+        30.3.1- interface Props {
+                    onSelectGenre: (genre: Genre) => void;
+                }
+        30.3.2- add the parameter
+            30.3.2.1- GenreList = ({ onSelectGenre }: Props)
+        30.3.3- add event to botton
+            30.3.3.1- onClick={() => onSelectGenre(genre)}
+    30.4- in App.tsx aside area add the new props
+        30.4.1- <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
+    30.5- on GameGrid.tsx add a new props interface
+        30.5.1- interface Props {
+                    onSelectGenre: (genre: Genre) => void;
+                }
+        30.5.2- add the props parameter
+    30.6- on GameGrid add the selectedGenre to useGames
+        30.6.1- const { data, error, isLoading } = useGames(selectedGenre);
+    30.7- now we have to modify useGames.ts to accept the parameter
+        30.7.1- const { data, error, isLoading } = useGames(selectedGenre);
+        30.7.2- on useData.ts modify const useData and add a second parameter optional requestConfig? type AxiosRequestConfig
+            30.7.3- (endpoint: string, requestConfig?: AxiosRequestConfig)
+        30.8- on useGames.ts add from AxiosRequestConfig params
+            30.8.1- const useGames = (selectedGenre: Genre | null) => useData<Game>('games', { params: { genres: selectedGenre?.id} })
+        30.9- now on useData.ts on fetchResponse after signal spread the requestConfig object
+            30.9.1- (endpoint, { signal: controller.signal, ...requestConfig })
+        30.10- let's test and se on network that we're a not sending any request to the server because we set empty array to the useEffect, making it to request only once to the server, we need to pass new dependencies.
+            30.10.1 return () => controller.abort();
+                    }, []);
+        30.11- in the parameters after requestConfig add deps:
+        with an any array
+            30.11.1- deps?: any[]
+        30.12- now add the dependency to the use effect return, might have an error because the deps might be null or undefined so we must set a ternary if
+            30.12.1- return () => controller.abort();
+                    }, deps ? [...deps] : []);
+        30.13- on useGames.ts after params add the dependency
+            30.13.1- { params: { genres: selectedGenre?.      id} }, [selectedGenre?.id]);
+        30.14- back to App.tsx and pass the selected genre to our GameGrid
+            30.14.1- <GameGrid selectedGenre={selectedGenre}/>
+        30.15-
+    

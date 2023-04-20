@@ -437,4 +437,13 @@
                 </ListItem>
     28.4- in the App.tsx add horizontal padding to aside area
         28.4.1- <GridItem area='aside' paddingX={5}>
-    28.5- 
+    28.5- remove the fix card width of 300px
+
+29- Showing a Spinner
+    29.1- on GameList.tsx add const isLoading and error
+    29.2- add if statement to check if is loading is true show spinner and if error is tru return null
+        29.2.1- const { data, isLoading, error } = useGenres();
+                if (isLoading) return <Spinner />;
+                if (error) return null;
+
+30- 

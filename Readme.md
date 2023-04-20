@@ -488,5 +488,12 @@
             30.13.1- { params: { genres: selectedGenre?.      id} }, [selectedGenre?.id]);
         30.14- back to App.tsx and pass the selected genre to our GameGrid
             30.14.1- <GameGrid selectedGenre={selectedGenre}/>
-        30.15-
+
+31- Highlighting the Selected Genre
+    31.1- on GenreList.tsx add a new props selectedGenre type Genre or null
+        31.1.1- selectedGenre: Genre | null;
+    31.2- add to GenreList parameters
+    31.3- in App.tsx add the parameter to GenreList
+
+32
     

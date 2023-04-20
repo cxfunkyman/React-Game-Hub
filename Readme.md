@@ -418,4 +418,23 @@
         27.11.1- const useGenres =() => useData<Genre>('genres');
     27.12- as the GameList.tsx don't have to know about the endpoint after step 27.11.1 in this file add
         27.12.1- const { data } = useGenres();    
-    27.13- same process for fetching games
+    27.13- same process for fetching games, and in the GameGrid.tsx fix the error for games change it for data
+
+28- Displaying the Genres
+    28.1- in useGenre.ts add background_image to interface
+        28.1.1- background_image: string;
+    28.2- on GenreList.ts change the ul for List and the li for ListItem, both from chakra
+    28.3- remove the genre.name, and add an horizontal stack to renders the name and the icons horizontally, for image fetch use the getcroppedimageurl
+        28.3.1- <ListItem key={genre.id}      paddingY="5px">
+                    <HStack>
+                        <Image
+                            boxSize="32px"
+                            borderRadius={10}
+                            src={getCroppedImageUrl(genre.image_background)}
+                        />
+                        <Text>{genre.name}</Text>
+                    </HStack>
+                </ListItem>
+    28.4- in the App.tsx add horizontal padding to aside area
+        28.4.1- <GridItem area='aside' paddingX={5}>
+    28.5- 

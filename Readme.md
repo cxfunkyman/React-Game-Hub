@@ -525,5 +525,23 @@
             32.10.1- if (error) return null;
         32.11- render dynamically the MenuItem
             32.11.1- {data.map(platform => <MenuItem key={platform.id}>{platform.name}</MenuItem>)}
-        32.12- 
-    
+
+33- Filtering Games by Platform
+    33.1- using the same approach as before (filtering by genre)
+    33.2- in app component add new useState, the same as genre but for platforms
+        33.2.1- const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
+    33.3- on PlatformSelector.tsx add an interface prop
+        33.3.1- interface Props{
+                    onSelectPlatform: (platform: Platform) => void;
+                }
+    33.4- add parameter to PlatformSelector
+        33.4.1- PlatformSelector = ({ onSelectPlatform }: Props)
+    33.5- to MenuItem add the onSelectPlatform
+        33.5.1- {data.map(platform => <MenuItem onClick={() => onSelectPlatform(platform)} key={platform.id}>{platform.name}</MenuItem>)}
+    33.6- in GameGrid component interface props add selectedPlatform type Platform or null
+        33.6.1- selectedPlatform: Platform | null;
+    33.7- app component on GameGrid main are add the selectdPlatform
+        33.7.1- <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre}/>
+    33.8- the rest is the same process as genre filtering
+
+34

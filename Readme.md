@@ -393,4 +393,29 @@
                     <GenreList />
               </GridItem>
 
-    
+27- Creating a Generic Data Fetching Hook
+    27.1- in hooks folder create a new file
+        27.1.1- useData.ts
+    27.2- copy all the code inside useGenres.ts and paste it in the new file
+    27.3- delete Genre interface
+    27.4- change [genre, setGenre] to [data, setData]
+    27.5- instead of Genre us a gereic type <T>
+        27.5.1- const useData = <T>() => {
+                const [data, setData] = useState<T[]> ([]);
+    27.6- add generic type to fetchGenreResponse and change name to fetchResponse
+        27.6.1- interface FetchResponse<T> {
+                    count: number;
+                    results: T[];
+                }
+    27.7- add endpoint as a parameter
+        27.7.1- const useData = <T>(endpoint: string) => {
+    27.8- add to .get fetchGenres
+        27.8.1- .get<FetchResponse<T>>(endpoint, { signal: controller.signal })
+    27.9- last return data error and isLoading
+    27.10- in GenreList.tsx change genre for data and add
+        27.10.1- const { data } = useData<Genre>('genres');
+    27.11- in useGenre.ts delete the fetchGenreResponse interface and delete the body of useGenres instead add
+        27.11.1- const useGenres =() => useData<Genre>('genres');
+    27.12- as the GameList.tsx don't have to know about the endpoint after step 27.11.1 in this file add
+        27.12.1- const { data } = useGenres();    
+    27.13- same process for fetching games

@@ -1,5 +1,6 @@
 1- Create the project with npm
-    1.1- npm create vite@latest (vite@4.1.0)
+
+    1.1- npm create vite@latest (vite@4.1.0)    
     1.2- project name: react-game-hub
     1.3- framework: React
     1.4- variant: Typescript

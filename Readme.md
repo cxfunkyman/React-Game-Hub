@@ -495,5 +495,35 @@
     31.2- add to GenreList parameters
     31.3- in App.tsx add the parameter to GenreList
 
-32
+32- Building Platform Selector (build a platform dropdown list)
+    32.1- on components folder add new file PlatformSelector.tsx
+    32.2- add from chakra menu and menubutton righticon from bootstrap chevron down, add a menulist and many menuitem just to test our app
+        32.2.1- <Menu>
+                    <MenuButton as={Button} rightIcon=  {<BsChevronDown />}>
+                        Platforms
+                    </MenuButton>
+                    <MenuList>
+                        <MenuItem>Item 1</MenuItem>        
+                        <MenuItem>Item 2</MenuItem>        
+                        <MenuItem>Item 3</MenuItem>        
+                    </MenuList>
+                </Menu>
+        32.3- add the platform selector on top of gamegrid in the app component main area
+        32.4- let's render the menuitem dynamically, for that we'll need a different endpoint from rawg.io
+        32.5- for platforms Rawg.io have 3 different endpoint
+            1- Get a list of video game platforms
+            2- Get a list of parent platforms
+            3- Get details of the platform
+        32.6- option number 2 will be used
+            32.6.1- https://api.rawg.io/api/platforms/lists/parents
+        32.7- in hooks folder create a new hook usePlatforms.ts
+        32.8 the same as the other hooks but with platforms
+            32.8.1- const usePlatforms = () => useData<Platform>('platforms/lists/parents');
+        32.9- add error to usePlatforms
+            32.9.1- const { data, error } = usePlatforms();
+        32.10- add if statement in case of an error before return statement
+            32.10.1- if (error) return null;
+        32.11- render dynamically the MenuItem
+            32.11.1- {data.map(platform => <MenuItem key={platform.id}>{platform.name}</MenuItem>)}
+        32.12- 
     

@@ -28,7 +28,7 @@
 
     5.1- on framework guide select chakra for vite
     
-    5.2- npm i @chakra-ui/react @emotion/react @emotion/    styled framer-motion
+    5.2- npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
     
     5.3- add a provider
         
@@ -1038,4 +1038,67 @@
                     <Input borderRadius={25} placeholder="Search games..." variant="filled" />
                 </InputGroup>
 
-39
+39- Searching Games
+
+    39.1- in SearchInput component wrap everything inside a Form element.
+    note: select all the fields and bring the command pallet type wrap and then form.        
+
+    39.2- replace action for onSubmit and prevent default
+
+        39.2.1- <form onSubmit={(event) => {
+                    event.preventDefault();
+                }}>
+                    <InputGroup>
+                        <InputLeftElement children={<BsSearch />} />
+                        <Input borderRadius={25} placeholder="Search games..." variant="filled" />
+                    </InputGroup>
+                </form>
+
+    39.3- now we can either use a ref hook or state hook, but because we have a simple input is easier to use a ref hook.
+    
+    39.4- before the return statement add the useRef and add it to the input element
+        
+        39.4.1- const ref = useRef<HTMLInputElement>(null);
+
+        39.4.2- <Input ref={ref} borderRadius={25} placeholder="Search games..." variant="filled" />
+
+    39.5- now inside form after event.preventdefault check if the ref is true (log into console to test if is working)
+
+        39.5.1- for test: if (ref.current) console.log(ref.current.value); 
+
+    39.6- probably the size of the form is shorter to fixed go to index.css and make the form width 100%
+
+        36.6.1- form {
+                    width: 100%;
+                }
+
+    39.7- continuing with SearchInput component add a props interface with parameters onSearch with searchText type string returning void and add the props to SearchInput
+
+        39.7.1- interface Props {
+                    onSearch: (searchText: string) => void;
+                }
+
+    39.8- replace the console log for onSearch
+
+        39.8.1- for test: if (ref.current) onSearch(ref.current.value); 
+
+    39.9- now in app component add search text type string to the GameQuery interface.
+
+    39.10- in the NavBar component inside SearchInput element add onSearch
+
+        39.10.1- <SearchInput onSearch={onSearch}/>
+
+    39.11- for now export the props from SearchInput and add it to the const NavBar as parameters
+
+        39.11.1- const NavBar = ({ onSearch }: Props)
+    
+    39.12- in the app component add it to nav bar in the nav area
+
+        39.12.1- <NavBar onSearch={(searchText) =>          setGameQuery({ ...gameQuery, searchText})} />
+
+    39.13- now on useGames hooks add to params
+
+        39.13.1- search: gameQuery.searchText
+
+40
+    

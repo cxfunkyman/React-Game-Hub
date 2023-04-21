@@ -250,7 +250,7 @@
     
     18.2- inside hooks create file useGames.ts
     
-    18.3- cut intefaces and useState, useEffect from GameGrid.tsx
+    18.3- cut interfaces and useState, useEffect from GameGrid.tsx
         const [games, setGames] = useState<Game[]> ([]);
         const [error, setError] = useState('');
         useEffect(() => {
@@ -431,7 +431,7 @@
     
     21.12- <HStack justifyContent='space-between'>
     
-    21.13- add to badge font-size and boreder-radius
+    21.13- add to badge font-size and border-radius
     
     21.14- fontSize='14px' paddingX={2} borderRadius='5px'
     
@@ -464,7 +464,7 @@
     
     22.7- return a url.slice
         
-        22.7.1- slice frm the beginning to index (0, index), then add the crop acepted by the api in this case 'crop/600/400/', then add the rest of the url
+        22.7.1- slice frm the beginning to index (0, index), then add the crop accepted by the api in this case 'crop/600/400/', then add the rest of the url
         
         22.7.2- return url.slice(0, index) + 'crop/600/400' + url.slice(index);
     
@@ -477,7 +477,7 @@
     23.1- on useGames.ts add 
         23.1.1- const [isLoading, setIsLoading] = useState(false);
     
-    23.2- in the useEffect in the response add new statement before the apiClinet setIsLoading to true and in .then and .catch to false
+    23.2- in the useEffect in the response add new statement before the apiClient setIsLoading to true and in .then and .catch to false
         
         23.2.1- setIsLoading(true);
                 apiClient
@@ -605,7 +605,7 @@
     
     26.4- change [genre, setGenre] to [data, setData]
     
-    26.5- instead of Genre us a gereic type <T>
+    26.5- instead of Genre us a generic type <T>
         
         26.5.1- const useData = <T>() => {
                 const [data, setData] = useState<T[]> ([]);
@@ -696,7 +696,7 @@
             
             29.3.2.1- GenreList = ({ onSelectGenre }: Props)
         
-        29.3.3- add event to botton
+        29.3.3- add event to button
             
             29.3.3.1- onClick={() => onSelectGenre(genre)}
     
@@ -840,7 +840,7 @@
         
         32.6.1- selectedPlatform: Platform | null;
     
-    32.7- app component on GameGrid main are add the selectdPlatform
+    32.7- app component on GameGrid main are add the selectedPlatform
         
         32.7.1- <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre}/>
     
@@ -1094,11 +1094,13 @@
     
     39.12- in the app component add it to nav bar in the nav area
 
-        39.12.1- <NavBar onSearch={(searchText) =>          setGameQuery({ ...gameQuery, searchText})} />
+        39.12.1- <NavBar onSearch={(searchText) => setGameQuery({ ...gameQuery, searchText})} />
 
     39.13- now on useGames hooks add to params
 
         39.13.1- search: gameQuery.searchText
 
-40
+40- Adding a Dynamic Heading
+
+    40.1- 
     

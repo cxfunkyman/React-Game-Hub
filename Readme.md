@@ -1004,7 +1004,7 @@
     
     37.2- to fix it replace HStack for Flex, but as Flex doesn't handle spacing we'll have to delete it
     
-    37.3- to fix this issue wrap one of the components inside a Box and give a marginRight or marginLeft depends on which one you selected and give a value of 5
+    37.3- to fix this issue wrap one of the components inside a Box and give a marginRight or marginLeft depends on which one you selected and give a value of 5 
         
         37.3.1- <Box marginRight={5}>
                     <PlatformSelector

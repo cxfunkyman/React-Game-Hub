@@ -691,4 +691,18 @@
                     />
                 </Box>
 
-39
+39- Building Search Input
+
+    39.1- in component folder create a new file SearchInput.tsx
+    39.2- create an input
+        39.2.1- <Input borderRadius={25} placeholder='Search games...' variant='filled/>
+    39.3- in NavBar component add it to nav area after logo
+        39.3.1- <SearchInput />
+    39.4- probably the dark mode label will be wrapped to fix that go to ColorModeSwitch component and add to the field Text a standard css attribute whiteSpace='nowrap'
+        39.4.1- <Text whiteSpace='nowrap'>
+    39.5- on SearchInput component wrap the input inside an InputGroup and inside add InputLeftElement with children for bootstrap search icon
+        39.5.1- <InputGroup>
+                    <InputLeftElement children={<BsSearch />} />
+                    <Input borderRadius={25} placeholder="Search games..." variant="filled" />
+                </InputGroup>
+    39.6-

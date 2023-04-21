@@ -677,4 +677,18 @@
     37.3- now in the if statement done before to prevent crashes for cards with no image, instead or returning an empty string return noImage
         37.3.1- if (!url) return noImage;
 
-38
+38- Fixing the Issue with Chakra Menus
+    
+    38.1- it seems we have a CSS issue noted in the console every time we make a filtering
+    38.2- to fix it replace HStack for Flex, but as Flex doesn't handle spacing we'll have to delete it
+    38.3- to fix this issue wrap one of the components inside a Box and give a marginRight or marginLeft depends on which one you selected and give a value of 5
+        38.3.1- <Box marginRight={5}>
+                    <PlatformSelector
+                        selectedPlatform={gameQuery.platform}
+                        onSelectPlatform={(platform) =>
+                        setGameQuery({ ...gameQuery, platform })
+                        }
+                    />
+                </Box>
+
+39

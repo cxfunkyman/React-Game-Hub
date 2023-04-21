@@ -1102,5 +1102,35 @@
 
 40- Adding a Dynamic Heading
 
-    40.1- 
+    40.1- on components folder create file GameHeading.tsx
+
+    40.2- we'll be returning a chakra Heading, you can return a react <H1> but we'll stick to chakra components
+
+        40.2.1- <Heading as='h1'></Heading>
+
+    40.3- now to render the heading dynamically we should receive the game query object as a props in this component, define props gameQuery of type GameQuery and add the parameters
+
+        40.3.1- interface Props {
+                    gameQuery: GameQuery
+                }
+
+        40.3.2- const GameHeading = ({ gameQuery }: Props) => {
+
+    40.4- before return statement create a heading const and add gameQuery platform and genre name, at the end Games
+
+        40.4.1- const heading = `${gameQuery.platform?.name || ''} ${gameQuery.genre?.name || ''} Games`;
+
+    40.5- now add it to Heading
+
+        40.5.1- <Heading as="h1">{heading}</Heading>
+
+    40.6- now in the app component and add our game heading just before main area flex component
+
+        40.6.1- <GridItem area="main">
+                    <GameHeading gameQuery={gameQuery}/>
+                    <Flex paddingLeft={4} marginBottom={2}>
+
+    40.7- in the app component wrap the heading, platform filter, order by, and game cards into a chakra box component
+
+        40.7.1- 
     

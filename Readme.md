@@ -574,4 +574,26 @@
         33.7.1- <GameGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre}/>
     33.8- the rest is the same process as genre filtering
 
-34
+34- Refactoring- Extracting a Query Object
+
+    34.1- till now we have too many variables and in the future we'll need some more like sort selector variables, searching an so on, to fix that we'll pack related variables inside an object with the Query Object Pattern, that contains all the query we need to query the games, making the code cleaner and easy to understand
+    34.2- in the app component create an interface GameQuery, 2 parameters, one for genre type Genre or null, the other platform type Platform or null.
+        34.2.1- interface GameQuery {
+                    genre: Genre | null;
+                    platform: Platform | null;
+                }
+    34.3- delete the 2 useState for genre and platform and create a new useState with GameQuery interface
+        34.3.1- interface GameQuery {
+                    genre: Genre | null;
+                    platform: Platform | null;
+                }
+        34.3.2- const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+    34.4- now replace selectedGenre and selectedPlatform with gameQuery.genre and gameQuery.platform
+    34.5- replace setSelectedGenre and setSelectedPlatform with setGameQuery({ ...gameQuery ,genre }) and setGameQuery({ ...gameQuery ,platform })
+    34.5- now the same in the GameGrid component
+        34.5.1- add gameQuery: GameQuery to props and delete the rest of the parameters
+        34.5.2- replace selectedGenre and selectedPlatform with gameQuery
+        34.5.3- now in useGames replace all the parameters with gameQuery
+        34.5.4- now modify useGames.ts to accept the parameter
+        34.5.5- add gameQuery to interface Props and delete the other 2, replace selectedGenre and selectedPlatform with gameQuery.genre and gameQuery.platform.
+        34.5.6- for the dependencies, only need to pass gameQuery

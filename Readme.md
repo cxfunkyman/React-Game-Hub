@@ -1152,4 +1152,21 @@
                     </Flex>
                 </Box>
 
-41
+41- Cleaning Up the Genres
+
+    41.1- in the GenreList component at button add white space and set it to normal and text align and set to left
+
+        41.1.1- whiteSpace='normal'
+                textAlign='left'
+
+    41.2- now at Image put objectFit='cover'
+
+    41.3- now let's add a heading to the  genre list and wrap everything inside a container
+
+        41.3.1- <Heading fontSize="2xl"     marginBottom={3}>
+                    Genres
+                </Heading>
+
+        41.3.2 <></>
+
+42

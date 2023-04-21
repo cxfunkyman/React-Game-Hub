@@ -1132,5 +1132,24 @@
 
     40.7- in the app component wrap the heading, platform filter, order by, and game cards into a chakra box component
 
-        40.7.1- 
-    
+        40.7.1- <Box paddingLeft={4}>
+                    <GameHeading gameQuery={gameQuery} />
+                    <Flex marginBottom={2}>
+                        <Box marginRight={5}>
+                            <PlatformSelector
+                                selectedPlatform={gameQuery.platform}
+                                onSelectPlatform={(platform) =>
+                                setGameQuery({ ...gameQuery, platform })
+                                }
+                            />
+                        </Box>
+                        <SortSelector
+                            sortOrder={gameQuery.sortOrder}
+                            onSelectSortOrder={(sortOrder) =>
+                            setGameQuery({ ...gameQuery, sortOrder })
+                        }
+                        />
+                    </Flex>
+                </Box>
+
+41

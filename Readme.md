@@ -597,3 +597,21 @@
         34.5.4- now modify useGames.ts to accept the parameter
         34.5.5- add gameQuery to interface Props and delete the other 2, replace selectedGenre and selectedPlatform with gameQuery.genre and gameQuery.platform.
         34.5.6- for the dependencies, only need to pass gameQuery
+        34.5.7- in the app component on main area GameGrid delete the passing objects and replace the with gameQuery={gameQuery}
+
+35- Building Sort Selector
+
+    35.1- on component folder create a new file
+        35.1.1- SortSelector.tsx
+    35.2- as SortSelector component is like PlatformSelector component we can copy the return statement and paste it inside the return of SortSelector component
+    35.3- add 6 menu item
+        35.3.1- <MenuItem>Relevance</MenuItem>
+                <MenuItem>Date Added</MenuItem>
+                <MenuItem>Name</MenuItem>
+                <MenuItem>Release Date</MenuItem>
+                <MenuItem>Popularity</MenuItem>
+                <MenuItem>Average Rating</MenuItem>
+    35.4- add SortSelector component to app component after PlatformSelector
+        35.4.1- put SortSelector and PlatformSelector inside an horizontal stack HStack
+
+36

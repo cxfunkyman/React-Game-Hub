@@ -1169,4 +1169,14 @@
 
         41.3.2 <></>
 
-42
+42- Cleaning Up the Game Cards
+
+    42.1- let's move the game console icons and the rating on top of the games name
+
+    42.2- in the gameCards component move the heading after the horizontal stack
+
+    42.3- add a marginBottom of 3
+
+    42.4- let's add more space between cards, on GameGrid component and change spacing to 6 and change the columns xl from 5 to 4
+
+43

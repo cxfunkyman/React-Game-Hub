@@ -669,4 +669,12 @@
     36.13- add next to order by the current sort order
         36.13.1- Order by: {currentSortOrder?.label || 'Relevance'}
 
-37
+37- Handling Games without an Image
+    
+    37.1- using an image to replace the image card when are not available, take one of your choice an put it inside assets folder
+    37.2- go to image-url.ts and import the image from assets
+        37.2.1- import noImage from '../assets/NAME OF YOUR IMAGE';
+    37.3- now in the if statement done before to prevent crashes for cards with no image, instead or returning an empty string return noImage
+        37.3.1- if (!url) return noImage;
+
+38

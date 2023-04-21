@@ -614,4 +614,59 @@
     35.4- add SortSelector component to app component after PlatformSelector
         35.4.1- put SortSelector and PlatformSelector inside an horizontal stack HStack
 
-36
+36- Sorting Games
+
+    36.1- sort games use the same approach as filtering, the Rawg.io api gives a set of keywords for sorting(ordering):
+        1- name
+        2- released
+        3- added
+        4- created
+        5- updated
+        6- rating
+        7- metacritic
+    36.2-  first lest create an array with values for rendering automatically the menuItem
+        36.2.1- const sortOrders = [
+                    { value: '', label: 'Relevance' },
+                    { value: '-added', label: 'Date Added' },
+                    { value: 'name', label: 'Name' },
+                    { value: '-released', label: 'Released Date' },
+                    { value: '-metecritic', label: 'Popularity' },
+                    { value: '-rating', label: 'Average Rating' },
+                    { value: '-created', label: 'Created' },
+                    { value: '-updated', label: 'Updated' },
+                ];
+    36.3- render the MenuItem dynamically
+        36.3.1- <MenuList>
+                    {sortOrders.map((order) => (
+                    <MenuItem 
+                        key={order.id} 
+                        value={order.value}
+                    >
+                        {order.label}
+                    </MenuItem>
+                    ))}
+                </MenuList>
+    36.4- create interface props with select sort order, parameter sort order as string and return void
+        36.4.1- interface Props {
+                    onSelectSortOrder: (sortOrder: string) => void;
+                }
+    36.5- add props to SortSelector and implement onClick
+        36.5.1- onClick={() => onSelectSortOrder(order.value)}
+    36.6- in app component add sortOrder type string to GameQuery interface
+    36.7- to SortSelector add the onSelectSortOrder event, this will make the app component to re-render
+        36.8- onSelectSortOrder={(sortOrder) =>
+              setGameQuery({ ...gameQuery, sortOrder })
+              }
+    36.8- in the next render we'll pass the new game query object to GameGrid, go useGames hook and add to params 
+        36.8.1- ordering: gameQuery.sortOrder
+        36.8.2- return to app component and in GameGrid add gameQuery and pass gameQuery as an object
+    36.9- till now we'll have an issue with games with no image this will create the app to crash, so in image_url.ts on service folder add an if statement where if !url return an empty string
+    36.10.- now in the app component on SortSelector add sort order with gameQuery.sortOrder, to pass the name dynamically of the selected category 
+        36.10.1- sortOrder={gameQuery.sortOrder}
+    36.11- add the sortOrder type string prop to SortSelector
+    36.12- create a new const to render the name of the selected filter
+        36.12.1- const currentSortOrder = sortOrders.find(order => order.value === sortOrder);
+    36.13- add next to order by the current sort order
+        36.13.1- Order by: {currentSortOrder?.label || 'Relevance'}
+
+37

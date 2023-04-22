@@ -1227,4 +1227,25 @@
 
         43.11.1- <Image { ...emojiMap[rating] } marginTop={2}/>
 
-44   
+44- Shipping Static Data
+
+    44.1- when the app was created we render skeleton game cards for games and spinner for genres.
+    genres hardly change so we can make it static data and include it with the app
+    that way we don't have to send unnecessary request to the server for some data that won't change over time
+    the data will be available right away and don't need to wait for spinner
+
+    44.2- open up dev tools in networks (right click inside browser, network) in the genre request click, and select preview and copy the results
+
+    44.3- on scr create a folder data and create a file genres.ts
+
+    44.4- export default and paste the results
+
+    44.5- go to useGenres.ts, in const useGenres delete the use data and add the new parameters data set to null, isLoading set to false, error set to null
+
+        44.5.1- ({ data: null, isLoading: false, error: null })
+
+    44.6- import genres, from data folder, set data to genres
+    
+    44.7- go to GenreList component
+
+45

@@ -1310,3 +1310,15 @@
     47.6- this is what we'll deploy as a production
 
 48- Deploying to Vercel
+
+    48.1- we'll deploy at Vercel 
+
+        48.1.1- https://vercel.com/
+    
+    48.2- we need to install Vercel
+
+        48.2.1- npm i -g vercel
+
+        48.2.2- just type vercel
+
+    48.3- now connect the app to your github repository

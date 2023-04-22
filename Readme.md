@@ -1292,4 +1292,21 @@
 
     46.2.1- if (error) return <Text>{error}</Text>;
 
-47
+47- Building for Production
+
+    47.1- we're ready to deploy our application but first we have to build it locally to make sure we don't have any issues, because is faster, safe and easily to discover and fix error locally than wait for deployment to finish
+
+    47.2- in the terminal type
+
+        47.2.1- npm run build
+
+    47.3- if we have an error in build time typescript compiler will notify before building
+
+    47.4- shortcut ctrl+shift+p click on build, nets npm build
+    or ctrl + f9 all in windows
+
+    47.5- in the folder dist, everything all of our assets, images as well all the javascript and all the css files are include it in this folder
+
+    47.6- this is what we'll deploy as a production
+
+48- Deploying to Vercel

@@ -1248,4 +1248,40 @@
     
     44.7- go to GenreList component
 
-45
+45- Customizing the Chakra Theme
+
+    45.1- on theme.ts add a new property colors object with a gary object and map it from different values like 50, 100, 200, to 900
+
+        45.1.1- const theme = extendTheme({
+                    config,
+                    colors: {
+                        gray: {
+                            50: '#f9f9f9',
+                            100: '#ededed',
+                            200: '#d3d3d3',
+                            300: '#b3b3b3',
+                            400: '#a0a0a0',
+                            500: '#898989',
+                            600: '#6c6c6c',
+                            700: '#202020',
+                            800: '#121212',
+                            900: '#111'
+                        }
+                    }
+                });
+    
+    45.2- you can search for the colors in different web sites, the base color for Rawg.io is #121212
+
+        1- Themera
+            1.1- https://themera.vercel.app/
+        
+        2- Smart Swatch (favorite)
+            2.1- https://smart-swatch.netlify.app/
+        
+        3- Coolors
+            3.1- https://coolors.co/d2f1e4-fbcaef-f865b0-e637bf-48304d
+        
+        4- Palx
+            4.1- https://palx.jxnblk.com/
+
+46

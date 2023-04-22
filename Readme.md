@@ -1179,4 +1179,52 @@
 
     42.4- let's add more space between cards, on GameGrid component and change spacing to 6 and change the columns xl from 5 to 4
 
-43
+43- Adding Emojis
+
+    43.1- open useGames.tsx from hooks folder and add a new game property, rating_top of type number
+
+    43.2- use the emoji of your like to put in the app
+
+    43.3- let's add a new component Emoji.tsx
+
+    43.4- we'll receive the rating as a prop, add a interface prop with rating of type number and add the props parameter
+
+    43.5- we're going to render the rating base on rating score, we're going to use a map object instead of multiples if statement, but first import the emoji images
+
+    43.6- add if statement for if less than 3 return null
+
+    43.7- create an emoji mapping for rating 
+    
+        1- 3 with src meh alt good 
+        2- 4 with src thumbsUp alt Recommended 
+        3- 5 with src bullsEye alt Recommended
+
+        43.7.1- const emojiMap: { [key: number]: ImageProps } = {
+                    3: { src: meh , alt: 'Good'},
+                    4: { src: thumbsUp , alt: 'Recommended'},
+                    5: { src: bullsEye , alt: 'Exceptional'}
+                }
+    
+    43.8- at the end we return an image
+
+        43.8.1- <Image { ...emojiMap[rating] } boxSize='25px' />
+
+    43.9- now add it to GameCard component, in the heading after the game name add the emoji
+
+        43.9.1- <Heading fontSize="1xl">{game.name}<Emoji rating={game.rating_top} /></Heading>
+
+
+    43.10- to render the size if the emoji icons have different size go to emoji component.
+    in the emoji app to every parameter add a boxSize parameter and delete boxSize from Image component
+
+        43.10.1- const emojiMap: { [key: number]: ImageProps } = {
+                        3: { src: meh , alt: 'Good', boxSize: '25px'},
+                        4: { src: thumbsUp , alt: 'Recommended', boxSize: '25px'},
+                        5: { src: bullsEye , alt: 'Exceptional', boxSize: '30px'}
+                    }
+
+    43.11- in the image add a desire margin top     
+
+        43.11.1- <Image { ...emojiMap[rating] } marginTop={2}/>
+
+44   

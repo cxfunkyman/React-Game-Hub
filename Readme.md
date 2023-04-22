@@ -1284,4 +1284,12 @@
         4- Palx
             4.1- https://palx.jxnblk.com/
 
-46
+46- Refactoring Game Grid
+
+    46.1- in the Gamegrid component we have the error or we have the data.
+
+    46.2- it will be better to put the error outside and return just the SimpleGrid, lets delete the error element and the wrap and before the return statement create the if
+
+    46.2.1- if (error) return <Text>{error}</Text>;
+
+47
